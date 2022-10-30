@@ -1,5 +1,5 @@
 #include <stdio.h>
-int distance(int a, int b, int *c)
+    int distance(int a, int b, int *c)
 {
     int posa, posb, diff;
     for (posa = 0; posa < 10; posa++)
