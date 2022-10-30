@@ -92,7 +92,7 @@ int main()
     }
     create(cll);
     printf("1.Display the list\n2.Insert after last pos\n3.Delete at location \n");
-    scanf("%d", &s);   
+    scanf("%d", &s);
     switch (s)
     {
     case 1:
@@ -109,6 +109,5 @@ int main()
     default:
         printf("invalid input");
         break;
-        
     }
 }
