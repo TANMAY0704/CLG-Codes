@@ -6,8 +6,8 @@ struct node
     int priority;
     struct node *next;
 };
-struct node *front, *rear;
 
+struct node *front, *rear;
 int enque()
 {
     struct node *nnode, *temp;
