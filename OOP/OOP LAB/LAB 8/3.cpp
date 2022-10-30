@@ -7,7 +7,7 @@ protected:
     char name[20];
     float balance;
 public:
-    void getdata()
+    void get_data()
     {
         cout << "Enter account number: ";
         cin >> acc_no;
@@ -42,9 +42,9 @@ class Savings : public Account
     float min_bal;
 
 public:
-    void getdata()
+    void get_data()
     {
-        Account::getdata();
+        Account::get_data();
         cout << "Enter minimum balance: ";
         cin >> min_bal;
     }
@@ -72,9 +72,9 @@ class Current : public Account
 {
     float over_due;
 public:
-    void getdata()
+    void get_data()
     {
-        Account::getdata();
+        Account::get_data();
         cout << "Enter over due amount: ";
         cin >> over_due;
     }
@@ -108,7 +108,7 @@ int main()
     for (int i = 0; i < 2; i++)
     {
         cout << "Enter details of account " << i + 1 << endl;
-        a[i]->getdata();
+        a[i]->get_data();
     }
     for (int i = 0; i < 2; i++)
     {
