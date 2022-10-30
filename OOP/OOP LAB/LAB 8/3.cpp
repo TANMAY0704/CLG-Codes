@@ -23,10 +23,10 @@ public:
         cin >> amt;
         balance += amt;
     }
-    virtual void withdraw()
+    virtual void w()
     {
         float amt;
-        cout << "Enter amount to withdraw: ";
+        cout << "Enter amount to w: ";
         cin >> amt;
         balance -= amt;
     }
@@ -52,10 +52,10 @@ public:
     {
         Account::deposit();
     }
-    void withdraw()
+    void w()
     {
         float amt;
-        cout << "Enter amount to withdraw: ";
+        cout << "Enter amount to w: ";
         cin >> amt;
         if (balance - amt < min_bal)
             cout << "Insufficient balance" << endl;
@@ -82,10 +82,10 @@ public:
     {
         Account::deposit();
     }
-    void withdraw()
+    void w()
     {
         float amt;
-        cout << "Enter amount to withdraw: ";
+        cout << "Enter amount to w: ";
         cin >> amt;
         if (balance - amt < over_due)
             cout << "Insufficient balance" << endl;
@@ -128,7 +128,7 @@ int main()
     for (int i = 0; i < 2; i++)
     {
         cout << "Enter details of account " << i + 1 << endl;
-        a[i]->withdraw();
+        a[i]->w();
     }
     for (int i = 0; i < 2; i++)
     {
