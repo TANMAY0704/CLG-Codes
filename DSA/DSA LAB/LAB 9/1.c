@@ -24,8 +24,7 @@ void enque()
         nnode->data = data;
         if (front == NULL)
         {
-            front = nnode;
-            rear = nnode;
+            front = rear = nnode;
             front->next = nnode;
             rear->next = nnode;
         }
