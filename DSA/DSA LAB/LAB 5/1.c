@@ -43,7 +43,7 @@ void traverse(struct node *start)
         curr = curr->next;
     }
 }
-struct node *insert(struct node *start)
+struct node* insert(struct node *start)
 {
     struct node *nnode;
     nnode = (struct node *)malloc(sizeof(struct node));
@@ -51,6 +51,7 @@ struct node *insert(struct node *start)
     scanf("%d", &nnode->data);
     nnode->next = start;
     return (nnode);
+
 }
 void del(struct node *start)
 {
@@ -88,7 +89,7 @@ int main()
         traverse(a);
         break;
     case 2:
-        a = insert(a);
+        a =insert(a);
         traverse(a);
         break;
     case 3:
