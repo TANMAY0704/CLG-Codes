@@ -38,7 +38,7 @@ void dispaly(struct node *top)
     temp = top;
     while (temp != NULL)
     {
-        printf("%d", temp->data);
+        printf("%d ", temp->data);
         temp = temp->next;
     }
 }

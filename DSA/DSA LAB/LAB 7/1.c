@@ -52,12 +52,12 @@ void display()
     {
         printf("The stack is \n");
         struct Node *temp = top;
-        while (temp->next != NULL)
+        while (temp != NULL)
         {
-            printf("%d--->", temp->data);
+            printf("%d ", temp->data);
             temp = temp->next;
         }
-        printf("%d--->NULL\n\n", temp->data);
+        //printf("%d--->NULL\n\n", temp->data);
     }
 }
 
