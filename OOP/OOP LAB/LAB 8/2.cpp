@@ -6,10 +6,9 @@ class Employee
     int id;
     double salary;
 public:
-    virtual void emp()
-    {}
+    virtual void emp() = 0;
 };
-class Regular : public Employee
+class Regular 
 {
     double DA;
     double HRA;
@@ -27,7 +26,7 @@ public:
              << (DA + HRA + basic_salary);
     }
 };
-class PartTime : public Employee
+class PartTime 
 {
     int number_of_hours;
     double pay_per_hour;

@@ -5,6 +5,7 @@ struct node
     int data;
     struct node *next;
 };
+struct node *start;
 void create(struct node *start)
 {
     struct node *curr;
@@ -28,7 +29,7 @@ void create(struct node *start)
     }
     curr->next = NULL;
 }
-void display(struct node *start)
+void display()
 {
     struct node *curr;
     curr = start;
@@ -39,7 +40,7 @@ void display(struct node *start)
     }
     printf("\n");
 }
-void insert(struct node *start)
+void insert()
 {
     struct node *nnode, *curr;
     nnode = (struct node *)malloc(sizeof(struct node));
@@ -48,15 +49,15 @@ void insert(struct node *start)
     scanf("%d", &choice);
     if (choice == 1)
     {
-        nnode->next = start;
-        printf("Enter data of new nod : ");
+        printf("Enter data of new node : ");
         scanf("%d", &nnode->data);
+        nnode->next = start;
         nnode = start;
     }
     else if (choice == 2)
     {
         curr = start;
-        printf("Enter data of new nod : ");
+        printf("Enter data of new node : ");
         scanf("%d", &nnode->data);
         while (curr->next != NULL)
         {
@@ -71,7 +72,7 @@ void insert(struct node *start)
         int s;
         printf("Enter loaction : ");
         scanf("%d", &s);
-        printf("Enter data of new nod : ");
+        printf("Enter data of new node : ");
         scanf("%d", &nnode->data);
         for (int i = 1; i < s; i++)
         {
@@ -81,7 +82,7 @@ void insert(struct node *start)
         curr->next = nnode;
     }
 }
-void delete(struct node *start)
+void delete()
 {
     struct node *temp, *curr;
     int choice;
@@ -109,23 +110,35 @@ void delete(struct node *start)
         int s;
         printf("Enter loaction : ");
         scanf("%d", &s);
-        for (int i = 1; i < s-1; i++)
+        for (int i = 1; i < s - 1; i++)
         {
             curr = curr->next;
         }
         curr->next = curr->next->next;
-        
     }
 }
 int main()
 {
     struct node *a;
     a = (struct node *)malloc(sizeof(struct node));
+    int x;
     create(a);
-    display(a);
-    insert(a);
-    display(a);
-    delete (a);
-    display(a);
+f:
+    printf("\n1.Display\n2.Insertion\n3.Deletion\nEnter Choice : ");
+    scanf("%d", &x);
+    switch (x)
+    {
+    case 1:
+        display();
+        goto f;
+    case 2:
+        insert();
+        display();
+        goto f;
+    case 3:
+        delete();
+        display();
+        goto f;
+    }
     return 0;
 }
