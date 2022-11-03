@@ -49,7 +49,11 @@ void insert()
     scanf("%d", &choice);
     if (choice == 1)
     {
+<<<<<<< Updated upstream
         printf("Enter data of new node : ");
+=======
+        printf("Enter data of new nod : ");
+>>>>>>> Stashed changes
         scanf("%d", &nnode->data);
         nnode->next = start;
         nnode = start;
