@@ -22,8 +22,8 @@ void create(struct node *start)
         curr = (struct node *)malloc(sizeof(struct node));
         printf("Enter data : ");
         scanf("%d", &curr->data);
-        start->next = curr;
         start = curr;
+        start->next = curr;
         printf("Press 1 to continue : ");
         scanf("%d", &a);
     }
