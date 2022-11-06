@@ -21,6 +21,7 @@ public:
      {
         
      }
+
     Class_type_two (Class_type_one& a)
     {
         b = a.get_string();
