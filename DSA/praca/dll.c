@@ -48,9 +48,10 @@ void insertion()
     nnode = (struct node *)malloc(sizeof(struct node));
     printf("Enter the data: ");
     scanf("%d", &nnode->data);
-    printf("At start press 1, at end press 2, at any other position press 3: ");
+    printf("\n1.At Start\n2.At End\n3.At Any Position\n");
     printf("Enter choice : ");
     scanf("%d", &s);
+    nnode->next = NULL;
     if (s == 1)
     {
         nnode->next = start;
@@ -65,7 +66,7 @@ void insertion()
             curr = curr->next;
         }
         curr->next = nnode;
-        nnode->prev = curr;
+        nnode->prev = curr;   
     }
     else if (s == 3)
     {
@@ -86,7 +87,7 @@ void insertion()
 void deletion()
 {
     int s;
-    printf("At start press 1, at end press 2, at any other position press 3: ");
+    printf("\n1.At Start\n2.At End\n3.At Any Position\n");
     printf("Enter choice : ");
     scanf("%d", &s);
     if (s == 1)
