@@ -1,4 +1,3 @@
-// binary tree using linked list
 #include <stdio.h>
 #include <stdlib.h>
 struct node
@@ -11,7 +10,7 @@ struct node *create()
 {
     struct node *nnode;
     int x;
-    printf("Enter data (-1 for no data): ");
+    printf("Enter data (0 for no data): ");
     scanf("%d", &x);
     if (x == 0)
     {
@@ -31,8 +30,7 @@ void preorder(struct node *t)
     {
         printf("%d ", t->data);
         preorder(t->left);
-        preorder(t->right);
-  
+        preorder(t->right);  
     }
 }
 void inorder(struct node *t)
@@ -42,7 +40,6 @@ void inorder(struct node *t)
         inorder(t->left);
         printf("%d ", t->data);
         inorder(t->right);
-
     }
 }
 void postorder(struct node *t)
@@ -52,7 +49,6 @@ void postorder(struct node *t)
         postorder(t->left);
         postorder(t->right);
         printf("%d ", t->data);
-
     }
 }
 
@@ -60,7 +56,6 @@ int main()
 {
     struct node *root;
     root = (struct node *)malloc(sizeof(struct node));
-
     root = create();
     printf("\nPreorder traversal is: ");
     preorder(root);
