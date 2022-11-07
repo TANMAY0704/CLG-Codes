@@ -27,12 +27,10 @@ void insertionsort()
     }
     printf("\nThe sorted array is: ");
     for (i = 0; i < n; i++)
-    {
+    {         
         printf("%d ", arr[i]);
     }
 }
-
-
 int main()
 {
     insertionsort();
