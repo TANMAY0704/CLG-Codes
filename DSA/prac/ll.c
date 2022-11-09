@@ -3,7 +3,7 @@
 struct node
 {
     int data;
-    struct node *next, *prev;
+    struct node *next;
 };
 struct node *start, *nnode, *curr;
 void create()
@@ -17,7 +17,6 @@ void create()
         printf("Enter the data: ");
         scanf("%d", &nnode->data);
         nnode->next = NULL;
-        nnode->prev = NULL;
         if (start == NULL)
         {
             start = nnode;
@@ -26,7 +25,6 @@ void create()
         else
         {
             curr->next = nnode;
-            nnode->prev = curr;
             curr = nnode;
         }
     }
@@ -48,14 +46,11 @@ void insertion()
     nnode = (struct node *)malloc(sizeof(struct node));
     printf("Enter the data: ");
     scanf("%d", &nnode->data);
-    printf("\n1.At Start\n2.At End\n3.At Any Position\n");
-    printf("Enter choice : ");
+    printf("\n1.At Start\n2.At End\n3.At Any Position: ");
     scanf("%d", &s);
-    nnode->next = NULL;
     if (s == 1)
     {
         nnode->next = start;
-        start->prev = nnode;
         start = nnode;
     }
     else if (s == 2)
@@ -66,7 +61,7 @@ void insertion()
             curr = curr->next;
         }
         curr->next = nnode;
-        nnode->prev = curr;   
+        nnode->next = NULL;
     }
     else if (s == 3)
     {
@@ -74,37 +69,35 @@ void insertion()
         printf("Enter the position: ");
         scanf("%d", &pos);
         curr = start;
-        for (i = 1; i < pos; i++)
+        for (i = 1; i < pos - 1; i++)
         {
             curr = curr->next;
         }
         nnode->next = curr->next;
-        curr->next->prev = nnode;
         curr->next = nnode;
-        nnode->prev = curr;
     }
 }
 void deletion()
 {
     int s;
-    printf("\n1.At Start\n2.At End\n3.At Any Position\n");
-    printf("Enter choice : ");
+    printf("\n1.At Start\n2.At End\n3.At Any Position: ");
     scanf("%d", &s);
     if (s == 1)
     {
         curr = start;
         start = start->next;
-        start->prev = NULL;
         free(curr);
     }
     else if (s == 2)
     {
+        struct node *temp;
         curr = start;
         while (curr->next != NULL)
         {
+            temp = curr;
             curr = curr->next;
         }
-        curr->prev->next = NULL;
+        temp->next = NULL;
         free(curr);
     }
     else if (s == 3)
@@ -113,17 +106,15 @@ void deletion()
         printf("Enter the position: ");
         scanf("%d", &pos);
         curr = start;
-        for (i = 1; i < pos; i++)
+        for (i = 1; i < pos - 1; i++)
         {
             curr = curr->next;
         }
-        curr->prev->next = curr->next;
-        curr->next->prev = curr->prev;
-        free(curr);
+        curr->next = curr->next->next;
     }
 }
-
 int main()
+
 {
     create();
     display();
