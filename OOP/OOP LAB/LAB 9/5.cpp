@@ -2,8 +2,8 @@
 using namespace std;
 int main()
 {
-    int a, b;
-    float x;
+
+    float a, b, x;
     cout << "Enter two integer values: ";
     cin >> a >> b;
     x = a / b;
@@ -18,7 +18,7 @@ int main()
             cout << x;
         }
     }
-    catch (int)
+    catch (float)
     {
         cout << "Second value cannot be zero";
     }
