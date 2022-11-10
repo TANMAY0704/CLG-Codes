@@ -10,7 +10,7 @@ public:
     }
 
     xyz(int a)
-    {
+    {     
         x = a;
     }
 

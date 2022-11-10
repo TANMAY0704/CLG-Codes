@@ -10,7 +10,8 @@ public:
         cin >> a >> b >> c;
     }
     void display()
-    {
+    {   
+        cout << endl;
         cout << a << " " << b << " " << c;
     }
     void operator++()

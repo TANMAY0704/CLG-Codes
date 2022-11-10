@@ -1,8 +1,6 @@
-//spare matrix
+// spare matrix
 #include <stdio.h>
 #include <stdlib.h>
-
-
 
 int main()
 {
@@ -54,4 +52,4 @@ int main()
         printf("\n");
     }
     return 0;
-}
+}   

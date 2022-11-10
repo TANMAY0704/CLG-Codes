@@ -58,7 +58,6 @@ int enque()
         return (0);
     }
 }
-
 void deque()
 {
     struct node *temp;
@@ -73,7 +72,6 @@ void deque()
         free(temp);
     }
 }
-
 void display()
 {
     struct node *temp;
@@ -93,7 +91,6 @@ void display()
         printf("%d(%d)", temp->data, temp->priority);
     }
 }
-
 int main()
 {
     int ch;
