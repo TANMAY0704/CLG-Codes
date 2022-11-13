@@ -1,5 +1,4 @@
 // WAP to demonstrate multiple catch and catch all.
-
 #include <iostream>
 using namespace std;
 int main()
@@ -10,11 +9,13 @@ int main()
         try
         {
             if (x == 6)
+            {
                 throw(x);
+            }
         }
         catch (...)
         {
-            printf("x=6");
+            printf("x = 6");
             if (y == 8)
             {
                 throw(y);
@@ -23,6 +24,6 @@ int main()
     }
     catch (int i)
     {
-        printf("\ny=%d", i);
+        printf("\ny = %d", i);
     }
 }

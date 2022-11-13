@@ -2,66 +2,65 @@
 #include <stdlib.h>
 struct node
 {
-    int data;
+    int data, priority;
     struct node *next;
 };
-struct node *front, *rear;
+struct node *front, *rear, *nnode;
 void enque()
 {
-    struct node *nnode;
     nnode = (struct node *)malloc(sizeof(struct node));
-    if (nnode == NULL)
+    printf("Enter data : ");
+    scanf("%d", &nnode->data);
+    printf("Enter the priority: ");
+    scanf("%d", &nnode->priority);
+    if (front == NULL)
     {
-        printf("Overflow!\n");
+        front = rear = nnode;
+        front->next = NULL;
+    }
+    else if (front->priority > nnode->priority)
+    {
+        nnode->next = front;
+        front = nnode;
     }
     else
     {
-        printf("Enter Data : ");
-        scanf("%d", &nnode->data);
-        if (front == NULL)
+        struct node *temp;
+        temp = front;
+        while (temp->next != NULL && temp->next->priority <= nnode->priority)
         {
-            front = rear = nnode;
-            front->next = NULL;
+            temp = temp->next;
         }
-        else
+        if (temp == rear && temp->priority > nnode->priority)
         {
             rear->next = nnode;
             rear = nnode;
-            rear->next = NULL;
+            rear->next = NULL; /* code */
         }
-    }
-}
-void deque()
-{
-    struct node *temp;
-    if (front == NULL)
-    {
-        printf("\nUnderflow\n");
-    }
-    else
-    {
-        temp = front;
-        front = front->next;
-        free(temp);
+        else
+        {
+            nnode->next = temp->next;
+            temp->next = nnode;
+        }
     }
 }
 void display()
 {
     struct node *temp;
+    printf("Queue : ");
     temp = front;
-    if (front == NULL)
+    while (temp != NULL)
     {
-        printf("Queue is empty!\n");
+        printf("%d->%d ", temp->data, temp->priority);
+        temp = temp->next;
     }
-    else
-    {
-        printf("Queue is : ");
-        while (temp != NULL)
-        {
-            printf("%d ", temp->data);
-            temp = temp->next;
-        }
-    }
+}
+void deque()
+{
+    struct node *temp;
+    temp = front;
+    front = front->next;
+    free(temp);
 }
 int main()
 {

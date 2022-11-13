@@ -1,23 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-void ssort(int a[], int n)
+void sort(int a[], int n)
 {
-    int i, j, max, p;
-    for (i = n - 1; i > 0; i--)
+    int i, j, temp;
+    for (i = 0; i < n - 1; i++)
     {
-        max = a[0];
-        p = 0;
-        for (j = 1; j <= i; j++)
+        for (j = 0; j < n; j++)
         {
-            if (a[j] > max)
+            if (a[j] > a[j + 1])
             {
-                max = a[j];
-                p = j;
+                temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
             }
         }
-        a[p] = a[i];
-        a[i] = max;
     }
 }
 void print(int a[], int n)
@@ -41,7 +37,8 @@ int main()
         scanf("%d", &a[j]);
     }
     print(a, n);
-    ssort(a, n);
+    sort(a, n);
     print(a, n);
+
     return 0;
 }

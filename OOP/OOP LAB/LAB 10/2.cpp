@@ -6,10 +6,11 @@ using namespace std;
 int main()
 {
     int a[N], l;
-    cout << "enter length of array ";
+    cout << "Enter length of array :  ";
     cin >> l;
     try
     {
+
         for (int i = 0; i < l; i++)
         {
             if (i >= N)
@@ -18,9 +19,15 @@ int main()
             }
             cin >> a[i];
         }
+        cout << "The Array is ";
+        for (int i = 0; i < l; i++)
+        {
+
+            cout << a[i] << " ";
+        }
     }
     catch (int j)
     {
-        cout << "array out of bounds";
+        cout << "Array out of bounds";
     }
 }

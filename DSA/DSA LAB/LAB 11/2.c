@@ -1,38 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
-void insertionsort()
+void insertionsort(int a[], int n)
 {
-    int arr[100], i, j, n, key;
-    printf("Enter the number of elements in the array: ");
-    scanf("%d", &n);
-    printf("Enter the elements of the array: ");
-    for (i = 0; i < n; i++)
-    {
-        scanf("%d", &arr[i]);
-    }
-    for (i = 0; i < n; i++)
-    {
-        printf("%d ", arr[i]);
-    }
+    int i, j, key;
     for (i = 1; i < n; i++)
     {
-        key = arr[i];
+        key = a[i];
         j = i - 1;
-        while (key < arr[j] && j >= 0)
+        while (j >= 0 && a[j] > key)
         {
-            arr[j + 1] = arr[j];
+            a[j + 1] = a[j];
             j--;
         }
-        arr[j + 1] = key;
+        a[j + 1] = key;
     }
-    printf("\nThe sorted array is: ");
+}
+void print(int a[], int n)
+{
+    int i;
     for (i = 0; i < n; i++)
-    {         
-        printf("%d ", arr[i]);
+    {
+        printf("%d ", a[i]);
     }
+    printf("\n");
 }
 int main()
 {
-    insertionsort();
+    int n, j;
+    printf("Enter lenght of array: ");
+    scanf("%d", &n);
+    int a[n];
+    for (j = 0; j < n; j++)
+    {
+        scanf("%d", &a[j]);
+    }
+    print(a, n);
+    insertionsort(a, n);
+    print(a, n);
     return 0;
 }
