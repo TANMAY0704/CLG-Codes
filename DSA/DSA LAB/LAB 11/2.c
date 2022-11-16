@@ -27,7 +27,7 @@ void print(int a[], int n)
 int main()
 {
     int n, j;
-    printf("Enter lenght of array: ");
+    printf("Enter length of array: ");
     scanf("%d", &n);
     int a[n];
     for (j = 0; j < n; j++)

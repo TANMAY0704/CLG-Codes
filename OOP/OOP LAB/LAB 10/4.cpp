@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#define N 100
+#define N 5
 template <class T>
 void sort(T arr[], int SIZE)
 {
@@ -16,12 +16,20 @@ void sort(T arr[], int SIZE)
                 arr[j] = temp;
             }
         }
+    }       
+}
+void print (double arr[], int SIZE)
+{
+    for (int i = 0; i < SIZE; i++)
+    {
+        cout << arr[i] << " ";
     }
+    cout << "\n";
 }
 int main()
 {
-    int int_array[N];
-    float float_array[N];
+    double int_array[N];
+    double float_array[N];
     cout << "Enter integer array elements : ";
     for (int i = 0; i < N; i++)
     {
@@ -35,14 +43,7 @@ int main()
     sort(int_array, N);
     sort(float_array, N);
     cout << "After sorting they are : ";
-    for (int i = 0; i < N; i++)
-    {
-        cout << int_array[i];
-    }
-    cout << endl;
-    for (int i = 0; i < N; i++)
-    {
-        cout << float_array[i];
-    }
+    print(int_array, N);
+    print(float_array, N);
     return 0;
 }

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 void ssort(int a[], int n)
 {
     int i, j, max, p;
@@ -40,7 +39,7 @@ int main()
     {
         scanf("%d", &a[j]);
     }
-    print(a, n);
+    print(a, n);  
     ssort(a, n);
     print(a, n);
     return 0;
