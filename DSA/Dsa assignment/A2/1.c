@@ -2,80 +2,108 @@
 #include <stdlib.h>
 struct node
 {
-    int p, t;
+    int info;
+    int priority;
     struct node *next;
-} *front = NULL, *rear = NULL;
+} *front = NULL, *end = NULL;
 void enque()
 {
-    struct node *ptr = (struct node *)malloc(sizeof(struct node)), *curr = front, *prev = front;
-    if (ptr == NULL)
-    {
-        printf("Out of space");
-        return;
-    }
-    printf("1.Local printing\n2.Web applications\n3.I/O interfacing\nEnter type of task: ");
-    scanf("%d", &ptr->p);
-    printf("Enter time required for the task: ");
-    scanf("%d", &ptr->t);
-    ptr->next = NULL;
-    if (rear == NULL)
-    {
-        front = rear = ptr;
-        return;
-    }
-    if (ptr->p > front->p)
+    int val, pri;
+    struct node *ptr, *p;
+    char ans;
+    printf("\nPriority 1 for Local Printing\n");
+    printf("Priority 2 for Web Applications \n");
+    printf("Priority 3 for I/O Interface \n");
+    ptr = (struct node *)malloc(sizeof(struct node));
+    printf("\nEnter the priority and execution time : ");
+    scanf("%d %d", &pri, &val);
+    ptr->info = val;
+    ptr->priority = pri;
+    if (front == NULL || pri > front->priority)
     {
         ptr->next = front;
         front = ptr;
-        return;
     }
-    while (curr->p >= ptr->p && curr->next != NULL)
+    else
     {
-        prev = curr;
-        curr = curr->next;
+        p = front;
+        while (p->next != NULL && p->next->priority >= pri)
+            p = p->next;
+        ptr->next = p->next;
+        p->next = ptr;
     }
-    if (curr->next == NULL && curr->p >= ptr->p)
-    {
-        curr->next = ptr;
-        // ptr->next=NULL;
-        return;
-    }
-    ptr->next = prev->next;
-    prev->next = ptr;
 }
 void deque()
 {
+    struct node *ptr;
+    int d;
     if (front == NULL)
     {
-        printf("Underflow!\n");
+        printf("\n Queue underflow");
         return;
     }
-    struct node *t = front;
-    if (front->p == 1)
-        printf("Local printing ");
-    else if (front->p == 2)
-        printf("Web applications ");
     else
-        printf("I/O interfacing ");
-    printf("operation with time: %d deleted\n", front->t);
-    if (front == rear)
-        front = rear = NULL;
-    else
-        front = front->next;
-    free(t);
-}
-void main()
-{
-    int ch = 1;
-    while (ch != 3)
     {
-        printf("1.Enque\n2.Deque\n3.Exit\nEnter choice: ");
-        scanf("%d", &ch);
-        if (ch == 1)
-            enque();
-        else if (ch == 2)
-            deque();
-        else
-            printf("Thank you");
+        ptr = front;
+        d = ptr->info;
+        front = front->next;
+        free(ptr);
+        printf("Deleted task %d ", d);
+
     }
+}
+void display()
+{
+    struct node *t1 = front, *t2 = end;
+    if (front == NULL && end == NULL)
+        printf("Queue is empty");
+    else
+    {
+        printf("Tasks in the queue :- \n\n");
+        while ((t1 != t2))
+        {
+            printf("Execution Time %d ", t1->info, t1->priority);
+            switch (t1->priority)
+            {
+            case 1:
+                printf("Priority 1 for Local Printing\n");
+                break;
+            case 2:
+                printf("Priority 2 for Web Applications \n");
+                break;
+            case 3:
+                printf("Priority 3 for I/O Interface \n");
+                break;
+            }
+            t1 = t1->next;
+        }
+        printf("\n");
+    }
+}
+int main()
+{
+    int ch;
+    while (1)
+    {
+        printf("\n1. Enque\n2. Deque\n3. Display\n4. Exit \n");
+        printf("Enter your choice : ");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+        case 1:
+            enque();
+            break;
+        case 2:
+            deque();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            exit(0);
+        default:
+            printf("Invalid choice");
+        }
+    }
+    return 0;
 }

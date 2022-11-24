@@ -13,7 +13,7 @@ int main()
     printf("enter id");
     scanf("%d", &e.id);
     printf("enter name");
-    scanf("%s", e.name);
+    scanf("%s", &e.name);
     printf("enter age");
     scanf("%d", &e.age);
     printf("enter salary");

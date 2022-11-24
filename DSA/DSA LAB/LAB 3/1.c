@@ -7,7 +7,7 @@ struct poly
     int coeff [11];
     int expo;
 };
-void insert(poly *p)
+void insert(struct poly *p)
 { 
     int i;
     printf ("\nEnter the max degree of poly :");
@@ -27,7 +27,7 @@ void insert(poly *p)
         scanf("%d",&p->coeff[i]);
     }
 }
-void display(poly *p)
+void display(struct poly *p)
 {
     printf ( "\n coefficient \t Exponent ");
     int i;

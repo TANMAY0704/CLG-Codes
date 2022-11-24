@@ -1,55 +1,54 @@
-// spare matrix
 #include <stdio.h>
 #include <stdlib.h>
-
-int main()
+void create(int a[10][10], int m, int n)
 {
-    int a[10][10], b[10][10], c[10][10], i, j, m, n, p, q, k, sum = 0;
-    printf("Enter the number of rows and columns of first matrix: ");
-    scanf("%d %d", &m, &n);
-    printf("Enter the number of rows and columns of second matrix: ");
-    scanf("%d %d", &p, &q);
-    if (n != p)
-    {
-        printf("The matrices cannot be multiplied with each other. ");
-        exit(0);
-    }
-    printf("Enter the elements of first matrix: ");
+    int i, j;
     for (i = 0; i < m; i++)
     {
         for (j = 0; j < n; j++)
         {
+            printf("Enter element %d%d : ", i, j);
             scanf("%d", &a[i][j]);
         }
     }
-    printf("Enter the elements of second matrix: ");
-    for (i = 0; i < p; i++)
-    {
-        for (j = 0; j < q; j++)
-        {
-            scanf("%d", &b[i][j]);
-        }
-    }
+}
+void spare(int a[10][10], int b[10][3], int m, int n)
+{
+    int i, j, k = 1;
     for (i = 0; i < m; i++)
     {
-        for (j = 0; j < q; j++)
+        for (j = 0; j < n; j++)
         {
-            for (k = 0; k < p; k++)
+            if (a[i][j] != 0)
             {
-                sum = sum + a[i][k] * b[k][j];
+                b[k][0] = i;
+                b[k][1] = j;
+                b[k][2] = a[i][j];
+                k++;
             }
-            c[i][j] = sum;
-            sum = 0;
         }
     }
-    printf("The product of the matrices is:\n");
-    for (i = 0; i < m; i++)
+    b[0][0] = m;
+    b[0][1] = n;
+    b[0][2] = k - 1;
+}
+void print(int a[10][3])
+{
+    int i;
+    for (i = 0; i < a[0][2] + 1; i++)
     {
-        for (j = 0; j < q; j++)
-        {
-            printf("%d ", c[i][j]);
-        }
-        printf("\n");
+        printf("%d %d %d \n", a[i][0], a[i][1], a[i][2]);
     }
+}
+
+int main()
+{
+    int a[10][10], b[10][3], m, n;
+    printf("Enter the order of the matrix : ");
+    scanf("%d%d", &m, &n);
+    create(a, m, n);
+    spare(a, b, m, n);
+    print(b);
+       
     return 0;
-}   
+}
