@@ -1,66 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct node
+void display(int a[], int n)
 {
-    int data;
-    struct node *next, *prev;
-};
-struct node *start, *curr, *nnode, *end;
-void create()
-{
-    int n, i;
-    printf("Ente the number of nodes : ");
-    scanf("%d", &n);
+    int i;
     for (i = 0; i < n; i++)
     {
-        nnode = (struct node *)malloc(sizeof(struct node));
-        printf("Enter data : ");
-        scanf("%d", &nnode->data);
-        if (start == NULL)
-        {
-            start = end = nnode;
-        }
-        else
-        {
-            end->next = nnode;
-            nnode->prev = end;
-            end = nnode;
-        }
+        printf("%d ", a[i]);
     }
-    end->next = start;
-    start->prev = end;
+    printf("\n");
 }
-void display()
+void insert(int a[], int n)
 {
-    curr = start;
-    while (curr->next != start)
+    int i, j, temp;
+    for (i = 1; i < n; i++)
     {
-        printf("%d ", curr->data);
-        curr = curr->next;
+        temp = a[i];
+        j = i - 1;
+        while (j >= 0 && a[j] > temp)
+        {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = temp;
     }
-    printf("%d ", curr->data);
 }
-void insert()
-{
-    nnode = (struct node *)malloc(sizeof(struct node));
-    printf("Enter data : ");
-    scanf("%d", &nnode->data);
-    curr = start;
-    while (curr->next != start)
-    {
-        curr = curr->next;
-    }
-    curr->next = nnode;
-    nnode->prev = curr;
-    end = nnode;
-    end->next = start;
-    
-}
+
 int main()
 {
-    create();
-    display();
-    insert();
-    display();
+    int a[100], n, i;
+    printf("Enter the number of elements in the array : ");
+    scanf("%d", &n);
+    printf("Enter the elements of the array : ");
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+    printf("The array before sorting is : ");
+    display(a, n);
+    insert(a, n);
+    printf("The array after sorting is : ");
+    display(a, n);
     return 0;
 }
