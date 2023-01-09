@@ -30,7 +30,7 @@ void merge(int a[], int l, int m, int r)
             j++;
         }
         k++;
-    }
+    }  
     while (i < n1)
     {
         a[k] = L[i];

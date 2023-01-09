@@ -23,7 +23,6 @@ struct node *create()
     nnode->right = create();
     return nnode;
 }
-
 void inorder(struct node *t)
 {
     if (t != NULL)
@@ -76,6 +75,24 @@ struct node *search(struct node *t, int key)
     else
     {
         return search(t->right, key);
+    }
+}
+struct node *search(struct node *t, int key)
+{
+    while(t != NULL)
+    {
+        if (t->data == key)
+        {
+            return t;
+        }
+        if (t->data > key)
+        {
+            t = t->left;
+        }
+        else
+        {
+            t = t->right;
+        }
     }
 }
 int main()
