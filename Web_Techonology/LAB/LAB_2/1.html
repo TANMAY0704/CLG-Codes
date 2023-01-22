@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tables</title>
+    <style>
+        table, td, th {
+            border: 2px solid black;
+            border-collapse:collapse;
+            table-layout: fixed;
+            width: 100%;
+        }
+        th  {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Train Name</th>
+            <th>Train Number</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Fare</th>
+        </tr>
+        <tr>
+            <td>Vande Bharat</td>
+            <td>20834</td>
+            <td>Secundrabad</td>
+            <td>Vishakapatnam</td>
+            <td>1660</td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <table>
+        <caption>Life expentacy by current Age</caption>
+        <tr>
+            <th colspan="2">65</th>
+            <th colspan="2">40</th>
+            <th colspan="2">20</th>
+        </tr>
+        <tr>
+            <th>Men  </th>
+            <th>Women</th>
+            <th>Men  </th>
+            <th>Women</th>
+            <th>Men  </th>
+            <th>Women</th>
+        </tr>
+        <tr>
+            <td>82</td>
+            <td>85</td>
+            <td>78</td>
+            <td>82</td>
+            <td>77</td>
+            <td>81</td>
+
+        </tr>
+    </table>
+
+    <br><br>
+
+
+    <table>
+        <caption>Invoice</caption>
+        <tr style="background-color: grey;">
+            <th>Item</th>
+            <th>Qty.</th>
+            <th>@</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Paperclips</td>
+            <td>100</td>
+            <td>1.15</td>
+            <td>115</td>
+        </tr>
+        <tr>
+            <td>Paperclips</td>
+            <td>100</td>
+            <td>1.15</td>
+            <td>115</td>  
+        </tr>
+        <tr>
+            <td>Paperclips</td>
+            <td>100</td>
+            <td>1.15</td>
+            <td>115</td>          
+        </tr>
+        <tr>
+            <th colspan="3" style="background-color: grey;">Subtotal</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th colspan="2" style="background-color: grey;">Tax</th>
+            <td>7%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th colspan="3" style="background-color: grey;">Total</th>
+            <td></td>
+        </tr>
+    </table>
+
+    <br><br>
+    <table>
+        <caption>Student Table</caption>
+        <tr>
+            <td>Roll no.</td>
+            <td>Name</td>
+            <td colspan="2">Marks</td>
+            <td>Average</td>
+            <td>Grade</td>
+            <td>SGPA</td>
+        </tr>
+        <tr>
+            <td rowspan="3" valign="top"> 1</td>
+            <td rowspan="3" valign ="top">John</td>
+            <td>Sub1</td>
+            <td>80</td>
+            <td rowspan="3"valign ="top">85</td>
+            <td rowspan="3" valign ="top">A</td>
+            <td rowspan="3" valign ="top">9.0</td>
+        </tr>
+        <tr>
+            <td>Sub2</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td>Sub3</td>
+            <td>85</td>
+
+    </table>
+</body>
+</html>
