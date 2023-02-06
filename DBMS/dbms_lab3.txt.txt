@@ -1,0 +1,5 @@
+SQL> create table ti (e int);
+
+Table created.
+
+SQL> spool off
