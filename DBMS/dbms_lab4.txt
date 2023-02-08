@@ -1,0 +1,217 @@
+SQL> select * from stud;
+
+    ROLLNO NAME                                                                 
+---------- ---------------                                                      
+  21052231 Tanmay                                                               
+
+SQL> drop stud;
+drop stud
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+SQL> drop table stud;
+
+Table dropped.
+
+SQL> drop table book;
+drop table book
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> 
+SQL> create table Student_Details (roll_no int,
+  2  name varchar(15),
+  3  gender char(1),
+  4  age int,
+  5  cgpa decimal,
+  6  city varchar(10),
+  7  grade char(1));
+
+Table created.
+
+SQL> desc Student_Details ;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(15)
+ GENDER                                             CHAR(1)
+ AGE                                                NUMBER(38)
+ CGPA                                               NUMBER(38)
+ CITY                                               VARCHAR2(10)
+ GRADE                                              CHAR(1)
+
+SQL> alter table Student_Details add branch char(3);
+
+Table altered.
+
+SQL> insert into Student_Details values (1001, Arun, M, 22, 75.61, Mumbai , A , IT);
+insert into Student_Details values (1001, Arun, M, 22, 75.61, Mumbai , A , IT)
+                                                                           *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
+
+SQL> desc Student_Details;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLL_NO                                            NUMBER(38)
+ NAME                                               VARCHAR2(15)
+ GENDER                                             CHAR(1)
+ AGE                                                NUMBER(38)
+ CGPA                                               NUMBER(38)
+ CITY                                               VARCHAR2(10)
+ GRADE                                              CHAR(1)
+ BRANCH                                             CHAR(3)
+
+SQL> insert into Student_Details values (1001, Arun, M, 22, 75.61, Mumbai , A , 'IT');
+insert into Student_Details values (1001, Arun, M, 22, 75.61, Mumbai , A , 'IT')
+                                                                       *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
+
+SQL> insert into Student_Details values (1001, 'Arun', 'M', 22, 75.61, 'Mumbai' , 'A' , 'IT');
+
+1 row created.
+
+SQL> select * from Student_Details;
+
+   ROLL_NO NAME            G        AGE       CGPA CITY       G BRA             
+---------- --------------- - ---------- ---------- ---------- - ---             
+      1001 Arun            M         22         76 Mumbai     A IT              
+
+SQL> insert into Student_Details values (1002, 'Akshay', 'M', 22, 66.61, 'Mumbai' , 'B' , 'IT');
+
+1 row created.
+
+SQL> insert into Student_Details values (1002, 'Rekha', 'F', 25, 76.61, 'Kolkata' , 'D' , 'CSE');
+
+1 row created.
+
+SQL> insert into Student_Details values (1004, 'Rashmi', 'F', 26, 77.61, 'NewDelhi' , 'C' , 'CSE');
+
+1 row created.
+
+SQL> insert into Student_Details values (1004, 'Anu', 'F', 28, 81.61, 'NewDelhi' , 'E' , 'ETC');
+
+1 row created.
+
+SQL> insert into Student_Details values (1005, 'Anshuman', 'M', 30, 84.61, 'Hyderabad' , 'E' , 'MEC');
+
+1 row created.
+
+SQL> select * from Student_Details;
+
+   ROLL_NO NAME            G        AGE       CGPA CITY       G BRA             
+---------- --------------- - ---------- ---------- ---------- - ---             
+      1001 Arun            M         22         76 Mumbai     A IT              
+      1002 Akshay          M         22         67 Mumbai     B IT              
+      1002 Rekha           F         25         77 Kolkata    D CSE             
+      1004 Rashmi          F         26         78 NewDelhi   C CSE             
+      1004 Anu             F         28         82 NewDelhi   E ETC             
+      1005 Anshuman        M         30         85 Hyderabad  E MEC             
+
+6 rows selected.
+
+SQL> update Student_Details set roll_no = 1008 where name= 'Anu';
+
+1 row updated.
+
+SQL> select * from Student_Details;
+
+   ROLL_NO NAME            G        AGE       CGPA CITY       G BRA             
+---------- --------------- - ---------- ---------- ---------- - ---             
+      1001 Arun            M         22         76 Mumbai     A IT              
+      1002 Akshay          M         22         67 Mumbai     B IT              
+      1002 Rekha           F         25         77 Kolkata    D CSE             
+      1004 Rashmi          F         26         78 NewDelhi   C CSE             
+      1008 Anu             F         28         82 NewDelhi   E ETC             
+      1005 Anshuman        M         30         85 Hyderabad  E MEC             
+
+6 rows selected.
+
+SQL> select * from Student_Details where roll_no = 1005;
+
+   ROLL_NO NAME            G        AGE       CGPA CITY       G BRA             
+---------- --------------- - ---------- ---------- ---------- - ---             
+      1005 Anshuman        M         30         85 Hyderabad  E MEC             
+
+SQL> delete from Student_Details where name = 'Arun';
+
+1 row deleted.
+
+SQL> select * from Student_Details;
+
+   ROLL_NO NAME            G        AGE       CGPA CITY       G BRA             
+---------- --------------- - ---------- ---------- ---------- - ---             
+      1002 Akshay          M         22         67 Mumbai     B IT              
+      1002 Rekha           F         25         77 Kolkata    D CSE             
+      1004 Rashmi          F         26         78 NewDelhi   C CSE             
+      1008 Anu             F         28         82 NewDelhi   E ETC             
+      1005 Anshuman        M         30         85 Hyderabad  E MEC             
+
+SQL> select * from Student_Details where name like 'a%';
+
+no rows selected
+
+SQL> select * from Student_Details where name like 'A%';
+
+   ROLL_NO NAME            G        AGE       CGPA CITY       G BRA             
+---------- --------------- - ---------- ---------- ---------- - ---             
+      1002 Akshay          M         22         67 Mumbai     B IT              
+      1008 Anu             F         28         82 NewDelhi   E ETC             
+      1005 Anshuman        M         30         85 Hyderabad  E MEC             
+
+SQL> select * from Student_Details where age > 25;
+
+   ROLL_NO NAME            G        AGE       CGPA CITY       G BRA             
+---------- --------------- - ---------- ---------- ---------- - ---             
+      1004 Rashmi          F         26         78 NewDelhi   C CSE             
+      1008 Anu             F         28         82 NewDelhi   E ETC             
+      1005 Anshuman        M         30         85 Hyderabad  E MEC             
+
+SQL> select * from Student_Details where cgpa between 60 and 70;
+
+   ROLL_NO NAME            G        AGE       CGPA CITY       G BRA             
+---------- --------------- - ---------- ---------- ---------- - ---             
+      1002 Akshay          M         22         67 Mumbai     B IT              
+
+SQL> select name,roll_no from Student_Details where age > 25;
+
+NAME               ROLL_NO                                                      
+--------------- ----------                                                      
+Rashmi                1004                                                      
+Anu                   1008                                                      
+Anshuman              1005                                                      
+
+SQL> select name,city from Student_Details where cgpa between 60 and 70;
+
+NAME            CITY                                                            
+--------------- ----------                                                      
+Akshay          Mumbai                                                          
+
+SQL> select name,grade from Student_Details where branch = 'IT' or branch = 'CSE';
+
+NAME            G                                                               
+--------------- -                                                               
+Akshay          B                                                               
+Rekha           D                                                               
+Rashmi          C                                                               
+
+SQL> select * from Student_Details where city like '%u%';
+
+   ROLL_NO NAME            G        AGE       CGPA CITY       G BRA             
+---------- --------------- - ---------- ---------- ---------- - ---             
+      1002 Akshay          M         22         67 Mumbai     B IT              
+
+SQL> select name,gender,cgpa from Student_Details where city = 'Mumbai';
+
+NAME            G       CGPA                                                    
+--------------- - ----------                                                    
+Akshay          M         67                                                    
+
+SQL> spool off
