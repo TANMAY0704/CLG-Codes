@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class number {
+
     static void palindrome(int num) {
         int r, sum = 0, temp;
         temp = num;

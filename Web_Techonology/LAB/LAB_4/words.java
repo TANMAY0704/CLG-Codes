@@ -10,8 +10,7 @@ public class words {
             return;
         }
         if (len > 4) {
-            System.out.println(
-                    "Length more than 4 is not supported");
+            System.out.println("Length more than 4 is not supported");
             return;
         }
         String[] single_digits = new String[] {
