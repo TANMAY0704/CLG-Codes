@@ -1,0 +1,226 @@
+SQL> create table EMPLOYEE (EmployeeId varchar2(10), Lname varchar2(50), Fname varchar2(30),  PositionId varchar2(30), Supervisor varchar2(30), HireDate date, Salary int, Commission int, DeptId varchar2(20), QualId varchar2(20));
+create table EMPLOYEE (EmployeeId varchar2(10), Lname varchar2(50), Fname varchar2(30),  PositionId varchar2(30), Supervisor varchar2(30), HireDate date, Salary int, Commission int, DeptId varchar2(20), QualId varchar2(20))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> drop table employee;
+
+Table dropped.
+
+SQL> create table EMPLOYEE (EmployeeId varchar2(10), Lname varchar2(50), Fname varchar2(30),  PositionId varchar2(30), Supervisor varchar2(30), HireDate date, Salary int, Commission int, DeptId varchar2(20), QualId varchar2(20));
+
+Table created.
+
+SQL> insert into t1 values( 'E01', 'Ghosh', 'Soumik', 'CEO','L Das', '10-jan-2023', 200000, 50000, 'D01', 'A1');
+insert into t1 values( 'E01', 'Ghosh', 'Soumik', 'CEO','L Das', '10-jan-2023', 200000, 50000, 'D01', 'A1')
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> insert into EMPLOYEE values( 'E01', 'Ghosh', 'Soumik', 'CEO','L Das', '10-jan-2023', 200000, 50000, 'D01', 'A1');
+
+1 row created. 
+
+SQL> insert into EMPLOYEE values( 'E02', 'Panda', 'Madhusnuhi', 'VC','K Patil', '10-feb-2023', 250000, 30000, 'D01', 'A2');
+
+1 row created.
+
+SQL> create table Position (PositionId varchar2(20), PosDesc varchar2(50));
+
+Table created.
+
+SQL> insert into Position values('Pos_01', 'The ceo of the company.');
+
+1 row created.
+
+SQL> insert into Position values('Pos_02', 'The Vice Chairman of the company.');
+
+1 row created.
+
+SQL> create table DEPT (DeptId varchar2(20), DeptName varchar2(50), Location varchar2(50) , EmployeeID varchar2(10) );
+
+Table created.
+
+SQL> insert into DEPT values('D01', 'COMPUTER SCIENCE', 'WEST BENGAL', 'E01' );
+
+1 row created.
+
+SQL> insert into DEPT values('D02', 'ARTIFICIAL INTELLIGENCE', 'UTTAR PRADESH', 'E02' );
+
+1 row created.
+
+SQL> create table QUALIFICATION (QualId varchar2(20) , QualDesc varchar2(50) );
+
+Table created.
+
+SQL> insert into QUALIFICATION values('A1', 'EXCELLED IN DATA SCIENCE! ' );
+
+1 row created.
+
+SQL> insert into QUALIFICATION values('A2', 'EXCELLED IN ARTIFICIAL INTELLIGENCE ! ' );
+
+1 row created.
+
+SQL> create table EMPLEVEL (LevelNo int , LowSalary int, HighSalary int );
+
+Table created.
+
+SQL> insert into EMPLEVEL values(1, 60000, 300000 );
+
+1 row created.
+
+SQL> insert into EMPLEVEL values(1, 50000, 250000 );
+
+1 row created.
+
+SQL> create table DEPENDENT (EmployeeId varchar2(10) , DependentId varchar2(10), DepDOB date, Relation Varchar2(20) );
+
+Table created.
+
+SQL> insert into DEPENDENT values('E01', 'AB1', 'BATCH MATE' );
+insert into DEPENDENT values('E01', 'AB1', 'BATCH MATE' )
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> insert into DEPENDENT values('E01', 'AB1','06-APRIL-2003', 'BATCH MATE' );
+
+1 row created.
+
+SQL> insert into DEPENDENT values('E02', 'AB2','11-NOVEMBER-2003', 'SCHOOL FRIENDS' );
+
+1 row created.
+
+SQL> select Lname ||','|| Fname || ' ' ||','|| Salary from EMPLOYEE;
+
+LNAME||','||FNAME||''||','||SALARY                                              
+--------------------------------------------------------------------------------
+Ghosh,Soumik ,200000                                                            
+Panda,Madhusnuhi ,250000                                                        
+
+SQL> select Fname ||' '|| Lname from EMPLOYEE where Commission=0;
+
+no rows selected
+
+SQL> select distinct(buildingname) from LOCATION;
+select distinct(buildingname) from LOCATION
+                                   *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select distinct(Location) from DEPT;
+
+LOCATION                                                                        
+--------------------------------------------------                              
+UTTAR PRADESH                                                                   
+WEST BENGAL                                                                     
+
+SQL> insert into EMPLOYEE values( 'E03', 'Nalin', 'Mathur', 'MANAGER','A MITTAL', '30-may-2022', 80000, 10000, 'D01', 'A3');
+
+1 row created.
+
+SQL> select * from dept where location='Bhubaneswar';
+
+no rows selected
+
+SQL>  insert into DEPT values('D03','Machine Learning', 'Bhubaneswar', 'E03' );
+
+1 row created.
+
+SQL> select * from dept where location='Bhubaneswar';
+
+DEPTID               DEPTNAME                                                   
+-------------------- --------------------------------------------------         
+LOCATION                                           EMPLOYEEID                   
+-------------------------------------------------- ----------                   
+D03                  Machine Learning                                           
+Bhubaneswar                                        E03                          
+                                                                                
+
+SQL>  insert into EMPLOYEE values( 'E04', 'SUHANA', 'ROY', 'ASSISTANT','B SEN', '30-mar-2022', 90000, 20000, 'D04', 'A3');
+
+1 row created.
+
+SQL> select Fname from EMPLOYEE where Fname like 'S%A';
+
+no rows selected
+
+SQL> select Lname from EMPLOYEE where Lname like 'S%A';
+
+LNAME                                                                           
+--------------------------------------------------                              
+SUHANA                                                                          
+
+SQL> select * from EMPLOYEE where HireDate>='31-December-2017';
+
+EMPLOYEEID LNAME                                                                
+---------- --------------------------------------------------                   
+FNAME                          POSITIONID                                       
+------------------------------ ------------------------------                   
+SUPERVISOR                     HIREDATE      SALARY COMMISSION                  
+------------------------------ --------- ---------- ----------                  
+DEPTID               QUALID                                                     
+-------------------- --------------------                                       
+E01        Ghosh                                                                
+Soumik                         CEO                                              
+L Das                          10-JAN-23     200000      50000                  
+D01                  A1                                                         
+                                                                                
+
+EMPLOYEEID LNAME                                                                
+---------- --------------------------------------------------                   
+FNAME                          POSITIONID                                       
+------------------------------ ------------------------------                   
+SUPERVISOR                     HIREDATE      SALARY COMMISSION                  
+------------------------------ --------- ---------- ----------                  
+DEPTID               QUALID                                                     
+-------------------- --------------------                                       
+E02        Panda                                                                
+Madhusnuhi                     VC                                               
+K Patil                        10-FEB-23     250000      30000                  
+D01                  A2                                                         
+                                                                                
+
+EMPLOYEEID LNAME                                                                
+---------- --------------------------------------------------                   
+FNAME                          POSITIONID                                       
+------------------------------ ------------------------------                   
+SUPERVISOR                     HIREDATE      SALARY COMMISSION                  
+------------------------------ --------- ---------- ----------                  
+DEPTID               QUALID                                                     
+-------------------- --------------------                                       
+E03        Nalin                                                                
+Mathur                         MANAGER                                          
+A MITTAL                       30-MAY-22      80000      10000                  
+D01                  A3                                                         
+                                                                                
+
+EMPLOYEEID LNAME                                                                
+---------- --------------------------------------------------                   
+FNAME                          POSITIONID                                       
+------------------------------ ------------------------------                   
+SUPERVISOR                     HIREDATE      SALARY COMMISSION                  
+------------------------------ --------- ---------- ----------                  
+DEPTID               QUALID                                                     
+-------------------- --------------------                                       
+E04        SUHANA                                                               
+ROY                            ASSISTANT                                        
+B SEN                          30-MAR-22      90000      20000                  
+D04                  A3                                                         
+                                                                                
+
+SQL> spool off;
+
+
+
+
+
+
+
+
+DBMS lab test

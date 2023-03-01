@@ -16,9 +16,12 @@ public class complex {
             img = -img;
             System.out.println("Complex number: " + real + " - " + img + "i");
         }
-        else if (img == 0){
+        else if (img == 0 ){
 
             System.out.println("Complex number: " + real);
+        }
+        else if (img == 1){
+            System.out.println("Complex number: " + real + " + i");
         }
         else
             System.out.println("Complex number: " + real + " + " + img + "i");

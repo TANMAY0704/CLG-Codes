@@ -1,8 +1,7 @@
 import java.util.Scanner;
 public class account {
     int cust_id;
-    String cust_name;
-    String branch;
+    String cust_name , branch;
     double balance;
     account(){
         balance = 1000;
@@ -42,7 +41,7 @@ public class account {
         account obj = new account();
         obj.get();
         obj.display();
-        obj.withdraw(500);
+        obj.withdraw(400);
         obj.deposit(1000);
     }
 }

@@ -19,7 +19,6 @@ public class matrix {
 
     }
     void display(){
-        System.out.println("Matrix: ");
         for(int i = 0; i < row; i++){
             for(int j = 0; j < col; j++){
                 System.out.print(mat[i][j] + " ");
@@ -68,8 +67,10 @@ public class matrix {
         matrix m4 = new matrix();
         m1.get();
         m2.get();
+        System.out.println("Matrix after addition: ");
         m3.add(m1, m2);
         m3.display();
+        System.out.println("Matrix after multiplication: ");
         m4.mul(m1, m2);
         m4.display();
     }

@@ -11,12 +11,10 @@ class vol {
         System.out.println("Volume of Cuboid: " + l * b * h);
     }
 
-    // volume prism
+
     void volume(double l, double b, double h, double h1) {
         System.out.println("Volume of Prism: " + l * b * h * h1);
     }
-
-    // volume cone
     void volume(double r, double h) {
         System.out.println("Volume of Cone: " + (1 / 3) * 3.14 * r * r * h);
     }
