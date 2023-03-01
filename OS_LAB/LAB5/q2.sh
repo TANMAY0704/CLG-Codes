@@ -15,3 +15,4 @@ then
 else
 	echo Not Palindrom
 fi
+exit
