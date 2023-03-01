@@ -11,7 +11,7 @@ do
 done
 if [ $sum -eq $original ]
 then
-	echo Palindrom
+	echo Palindrome
 else
 	echo Not Palindrom
 fi
