@@ -18,4 +18,4 @@ then
 else
 	echo $a is not a perfect number
 fi
-
+exit

@@ -1,9 +1,8 @@
 echo Enter a number
 read a
-fact=1
-for i in {$a..1}
+
+for (( i=1; i<=$a; i++ ))
 do
 	fact=`expr $fact \* $i`
 done
 echo Factorial of $a is $fact
-
