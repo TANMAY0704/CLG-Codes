@@ -1,11 +1,8 @@
-echo hi
-echo hi
+echo Enter input
 read a
-
-fact=1
-for((i=1;i<=a;i++))
-do
-fact=$((fact*i))
-done
-echo $fact
-
+case $a in
+[a-z]) echo lower alphabet;;
+[A-Z]) echo Upper alphabet;;
+[1-9]) echo Number;;
+*) echo special character ;;
+esac
