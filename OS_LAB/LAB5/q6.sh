@@ -9,3 +9,4 @@ do
 	a=`expr $a / 10` 
 done
 echo Sum of digits is $sum
+
