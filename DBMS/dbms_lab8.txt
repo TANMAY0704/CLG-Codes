@@ -1,0 +1,302 @@
+SQL> CREATE TABLE Student (
+  2      Roll_no INT PRIMARY KEY,
+  3      Name VARCHAR(50) NOT NULL,
+  4      Address VARCHAR(50)
+  5  );
+
+Table created.
+
+SQL> INSERT INTO Student (Roll_no, Name, Address)
+  2  VALUES
+  3      (101, 'Sushil', 'Bbsr'),
+  4      (102, 'Amrit', 'Ctc'),
+  5      (103, 'Vikas', 'Bbsr'),
+  6      (104, 'Rahul', 'Delhi'),
+  7      (105, 'Jiten', 'Mumbai'),
+  8      (106, 'Ajay', 'ctc');
+    (101, 'Sushil', 'Bbsr'),
+                           *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> INSERT INTO Student (Roll_no, Name, Address)
+  2  VALUES
+  3      (101, 'Sushil', 'Bbsr'),
+  4      (102, 'Amrit', 'Ctc'),
+  5      (103, 'Vikas', 'Bbsr'),
+  6      (104, 'Rahul', 'Delhi'),
+  7      (105, 'Jiten', 'Mumbai'),
+  8      (105, 'Jiten', 'Mumbai'),
+  9  ;
+    (101, 'Sushil', 'Bbsr'),
+                           *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> insert into student values (101, 'Sushil', 'Bbsr');
+
+1 row created.
+
+SQL> insert into student values (102, 'Amrit', 'Ctc');
+
+1 row created.
+
+SQL> insert into student values (103, 'Vikas', 'Bbsr');
+
+1 row created.
+
+SQL> insert into student values (104, 'Rahul', 'Delhi');
+
+1 row created.
+
+SQL> insert into student values (105, 'Jiten', 'Mumbai');
+
+1 row created.
+
+SQL> insert into student values (106, 'Ajay', 'ctc');
+
+1 row created.
+
+SQL> CREATE TABLE Book (
+  2      Book_no INT PRIMARY KEY,
+  3      Book_name VARCHAR(50) NOT NULL,
+  4      Roll_no INT,
+  5      FOREIGN KEY (Roll_no) REFERENCES Student(Roll_no)
+  6  );
+
+Table created.
+
+SQL> insert into book values (11, 'Java', 102);
+
+1 row created.
+
+SQL> insert into book values (22, 'C', 105);
+
+1 row created.
+
+SQL> insert into book values (33, 'Oracle', 102);
+
+1 row created.
+
+SQL> insert into book values (44, 'C++', NULL);
+
+1 row created.
+
+SQL> insert into book values (55, 'Os', 103),
+  2  ;
+insert into book values (55, 'Os', 103),
+                                       *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> insert into book values (55, 'Os', 103);
+
+1 row created.
+
+SQL> insert into book values (66, 'cn', NULL);
+
+1 row created.
+
+SQL> SELECT Student.Name, Book.Book_name
+  2  FROM Student
+  3  INNER JOIN Book ON Student.Roll_no = Book.Roll_no
+  4  WHERE Book.Roll_no IS NOT NULL;
+
+NAME                                                                            
+--------------------------------------------------                              
+BOOK_NAME                                                                       
+--------------------------------------------------                              
+Amrit                                                                           
+Oracle                                                                          
+                                                                                
+Amrit                                                                           
+Java                                                                            
+                                                                                
+Vikas                                                                           
+Os                                                                              
+                                                                                
+
+NAME                                                                            
+--------------------------------------------------                              
+BOOK_NAME                                                                       
+--------------------------------------------------                              
+Jiten                                                                           
+C                                                                               
+                                                                                
+
+SQL> set linesize 200
+SQL> SELECT Student.Name, Book.Book_name
+  2  FROM Student
+  3  INNER JOIN Book ON Student.Roll_no = Book.Roll_no
+  4  WHERE Book.Roll_no IS NOT NULL;
+
+NAME                                               BOOK_NAME                                                                                                                                            
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+Amrit                                              Oracle                                                                                                                                               
+Amrit                                              Java                                                                                                                                                 
+Vikas                                              Os                                                                                                                                                   
+Jiten                                              C                                                                                                                                                    
+
+SQL> SELECT s.Name, b.Book_name
+  2  FROM Student s
+  3  LEFT JOIN (
+  4      SELECT DISTINCT Roll_no, Book_name
+  5      FROM Book
+  6      WHERE Roll_no IS NOT NULL
+  7  ) b ON s.Roll_no = b.Roll_no;
+
+NAME                                               BOOK_NAME                                                                                                                                            
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+Amrit                                              Java                                                                                                                                                 
+Jiten                                              C                                                                                                                                                    
+Vikas                                              Os                                                                                                                                                   
+Amrit                                              Oracle                                                                                                                                               
+Ajay                                                                                                                                                                                                    
+Sushil                                                                                                                                                                                                  
+Rahul                                                                                                                                                                                                   
+
+7 rows selected.
+
+SQL> SELECT s.Name, b.Book_name
+  2  FROM Student s
+  3  LEFT JOIN Book b ON s.Roll_no = b.Roll_no
+  4  WHERE b.Roll_no IS NOT NULL OR b.Roll_no IS NULL;
+
+NAME                                               BOOK_NAME                                                                                                                                            
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+Amrit                                              Java                                                                                                                                                 
+Jiten                                              C                                                                                                                                                    
+Amrit                                              Oracle                                                                                                                                               
+Vikas                                              Os                                                                                                                                                   
+Ajay                                                                                                                                                                                                    
+Sushil                                                                                                                                                                                                  
+Rahul                                                                                                                                                                                                   
+
+7 rows selected.
+
+SQL> SELECT *
+  2  FROM Student
+  3  CROSS JOIN Book;
+
+   ROLL_NO NAME                                               ADDRESS                                               BOOK_NO BOOK_NAME                                             ROLL_NO               
+---------- -------------------------------------------------- -------------------------------------------------- ---------- -------------------------------------------------- ----------               
+       101 Sushil                                             Bbsr                                                       11 Java                                                      102               
+       101 Sushil                                             Bbsr                                                       22 C                                                         105               
+       101 Sushil                                             Bbsr                                                       33 Oracle                                                    102               
+       101 Sushil                                             Bbsr                                                       44 C++                                                                         
+       101 Sushil                                             Bbsr                                                       55 Os                                                        103               
+       101 Sushil                                             Bbsr                                                       66 cn                                                                          
+       102 Amrit                                              Ctc                                                        11 Java                                                      102               
+       102 Amrit                                              Ctc                                                        22 C                                                         105               
+       102 Amrit                                              Ctc                                                        33 Oracle                                                    102               
+       102 Amrit                                              Ctc                                                        44 C++                                                                         
+       102 Amrit                                              Ctc                                                        55 Os                                                        103               
+
+   ROLL_NO NAME                                               ADDRESS                                               BOOK_NO BOOK_NAME                                             ROLL_NO               
+---------- -------------------------------------------------- -------------------------------------------------- ---------- -------------------------------------------------- ----------               
+       102 Amrit                                              Ctc                                                        66 cn                                                                          
+       103 Vikas                                              Bbsr                                                       11 Java                                                      102               
+       103 Vikas                                              Bbsr                                                       22 C                                                         105               
+       103 Vikas                                              Bbsr                                                       33 Oracle                                                    102               
+       103 Vikas                                              Bbsr                                                       44 C++                                                                         
+       103 Vikas                                              Bbsr                                                       55 Os                                                        103               
+       103 Vikas                                              Bbsr                                                       66 cn                                                                          
+       104 Rahul                                              Delhi                                                      11 Java                                                      102               
+       104 Rahul                                              Delhi                                                      22 C                                                         105               
+       104 Rahul                                              Delhi                                                      33 Oracle                                                    102               
+       104 Rahul                                              Delhi                                                      44 C++                                                                         
+
+   ROLL_NO NAME                                               ADDRESS                                               BOOK_NO BOOK_NAME                                             ROLL_NO               
+---------- -------------------------------------------------- -------------------------------------------------- ---------- -------------------------------------------------- ----------               
+       104 Rahul                                              Delhi                                                      55 Os                                                        103               
+       104 Rahul                                              Delhi                                                      66 cn                                                                          
+       105 Jiten                                              Mumbai                                                     11 Java                                                      102               
+       105 Jiten                                              Mumbai                                                     22 C                                                         105               
+       105 Jiten                                              Mumbai                                                     33 Oracle                                                    102               
+       105 Jiten                                              Mumbai                                                     44 C++                                                                         
+       105 Jiten                                              Mumbai                                                     55 Os                                                        103               
+       105 Jiten                                              Mumbai                                                     66 cn                                                                          
+       106 Ajay                                               ctc                                                        11 Java                                                      102               
+       106 Ajay                                               ctc                                                        22 C                                                         105               
+       106 Ajay                                               ctc                                                        33 Oracle                                                    102               
+
+   ROLL_NO NAME                                               ADDRESS                                               BOOK_NO BOOK_NAME                                             ROLL_NO               
+---------- -------------------------------------------------- -------------------------------------------------- ---------- -------------------------------------------------- ----------               
+       106 Ajay                                               ctc                                                        44 C++                                                                         
+       106 Ajay                                               ctc                                                        55 Os                                                        103               
+       106 Ajay                                               ctc                                                        66 cn                                                                          
+
+36 rows selected.
+
+SQL> set linesize 500
+SQL> SELECT *
+  2  FROM Student
+  3  CROSS JOIN Book;
+
+   ROLL_NO NAME                                               ADDRESS                                               BOOK_NO BOOK_NAME                                             ROLL_NO                                                                                                                                                                                                                                                                                                                           
+---------- -------------------------------------------------- -------------------------------------------------- ---------- -------------------------------------------------- ----------                                                                                                                                                                                                                                                                                                                           
+       101 Sushil                                             Bbsr                                                       11 Java                                                      102                                                                                                                                                                                                                                                                                                                           
+       101 Sushil                                             Bbsr                                                       22 C                                                         105                                                                                                                                                                                                                                                                                                                           
+       101 Sushil                                             Bbsr                                                       33 Oracle                                                    102                                                                                                                                                                                                                                                                                                                           
+       101 Sushil                                             Bbsr                                                       44 C++                                                                                                                                                                                                                                                                                                                                                                                     
+       101 Sushil                                             Bbsr                                                       55 Os                                                        103                                                                                                                                                                                                                                                                                                                           
+       101 Sushil                                             Bbsr                                                       66 cn                                                                                                                                                                                                                                                                                                                                                                                      
+       102 Amrit                                              Ctc                                                        11 Java                                                      102                                                                                                                                                                                                                                                                                                                           
+       102 Amrit                                              Ctc                                                        22 C                                                         105                                                                                                                                                                                                                                                                                                                           
+       102 Amrit                                              Ctc                                                        33 Oracle                                                    102                                                                                                                                                                                                                                                                                                                           
+       102 Amrit                                              Ctc                                                        44 C++                                                                                                                                                                                                                                                                                                                                                                                     
+       102 Amrit                                              Ctc                                                        55 Os                                                        103                                                                                                                                                                                                                                                                                                                           
+
+   ROLL_NO NAME                                               ADDRESS                                               BOOK_NO BOOK_NAME                                             ROLL_NO                                                                                                                                                                                                                                                                                                                           
+---------- -------------------------------------------------- -------------------------------------------------- ---------- -------------------------------------------------- ----------                                                                                                                                                                                                                                                                                                                           
+       102 Amrit                                              Ctc                                                        66 cn                                                                                                                                                                                                                                                                                                                                                                                      
+       103 Vikas                                              Bbsr                                                       11 Java                                                      102                                                                                                                                                                                                                                                                                                                           
+       103 Vikas                                              Bbsr                                                       22 C                                                         105                                                                                                                                                                                                                                                                                                                           
+       103 Vikas                                              Bbsr                                                       33 Oracle                                                    102                                                                                                                                                                                                                                                                                                                           
+       103 Vikas                                              Bbsr                                                       44 C++                                                                                                                                                                                                                                                                                                                                                                                     
+       103 Vikas                                              Bbsr                                                       55 Os                                                        103                                                                                                                                                                                                                                                                                                                           
+       103 Vikas                                              Bbsr                                                       66 cn                                                                                                                                                                                                                                                                                                                                                                                      
+       104 Rahul                                              Delhi                                                      11 Java                                                      102                                                                                                                                                                                                                                                                                                                           
+       104 Rahul                                              Delhi                                                      22 C                                                         105                                                                                                                                                                                                                                                                                                                           
+       104 Rahul                                              Delhi                                                      33 Oracle                                                    102                                                                                                                                                                                                                                                                                                                           
+       104 Rahul                                              Delhi                                                      44 C++                                                                                                                                                                                                                                                                                                                                                                                     
+
+   ROLL_NO NAME                                               ADDRESS                                               BOOK_NO BOOK_NAME                                             ROLL_NO                                                                                                                                                                                                                                                                                                                           
+---------- -------------------------------------------------- -------------------------------------------------- ---------- -------------------------------------------------- ----------                                                                                                                                                                                                                                                                                                                           
+       104 Rahul                                              Delhi                                                      55 Os                                                        103                                                                                                                                                                                                                                                                                                                           
+       104 Rahul                                              Delhi                                                      66 cn                                                                                                                                                                                                                                                                                                                                                                                      
+       105 Jiten                                              Mumbai                                                     11 Java                                                      102                                                                                                                                                                                                                                                                                                                           
+       105 Jiten                                              Mumbai                                                     22 C                                                         105                                                                                                                                                                                                                                                                                                                           
+       105 Jiten                                              Mumbai                                                     33 Oracle                                                    102                                                                                                                                                                                                                                                                                                                           
+       105 Jiten                                              Mumbai                                                     44 C++                                                                                                                                                                                                                                                                                                                                                                                     
+       105 Jiten                                              Mumbai                                                     55 Os                                                        103                                                                                                                                                                                                                                                                                                                           
+       105 Jiten                                              Mumbai                                                     66 cn                                                                                                                                                                                                                                                                                                                                                                                      
+       106 Ajay                                               ctc                                                        11 Java                                                      102                                                                                                                                                                                                                                                                                                                           
+       106 Ajay                                               ctc                                                        22 C                                                         105                                                                                                                                                                                                                                                                                                                           
+       106 Ajay                                               ctc                                                        33 Oracle                                                    102                                                                                                                                                                                                                                                                                                                           
+
+   ROLL_NO NAME                                               ADDRESS                                               BOOK_NO BOOK_NAME                                             ROLL_NO                                                                                                                                                                                                                                                                                                                           
+---------- -------------------------------------------------- -------------------------------------------------- ---------- -------------------------------------------------- ----------                                                                                                                                                                                                                                                                                                                           
+       106 Ajay                                               ctc                                                        44 C++                                                                                                                                                                                                                                                                                                                                                                                     
+       106 Ajay                                               ctc                                                        55 Os                                                        103                                                                                                                                                                                                                                                                                                                           
+       106 Ajay                                               ctc                                                        66 cn                                                                                                                                                                                                                                                                                                                                                                                      
+
+36 rows selected.
+
+SQL> SELECT p1.PID, p1.PNAME, p1.PRICE, p2.PNAME AS COMPARED_NAME, p2.PRICE AS COMPARED_PRICE
+  2  FROM Product p1
+  3  JOIN Product p2 ON p1.PRICE > p2.PRICE AND p1.PNAME <> p2.PNAME;
+JOIN Product p2 ON p1.PRICE > p2.PRICE AND p1.PNAME <> p2.PNAME
+     *
+ERROR at line 3:
+ORA-00942: table or view does not exist 
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off
