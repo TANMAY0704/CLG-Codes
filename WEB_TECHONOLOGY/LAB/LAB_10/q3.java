@@ -18,8 +18,7 @@ public class q3 {
                 System.out.println("Value at index " + index + " is " + array[index]);
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println(e);
-            } catch (NumberFormatException e) {
-                System.out.println(e);
+
             }
         } catch (NumberFormatException e) {
             System.out.println(e);
