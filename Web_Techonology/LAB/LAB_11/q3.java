@@ -21,8 +21,7 @@ public class q3 {
         } catch (ArithmeticException e) {
             System.out.println("Caught ArithmeticException: " + e.getMessage());
         } finally {
-            int result = divide(10, 2);
-            System.out.println("Result: " + result);
+
             System.out.println("Finally block executed");
         }
 

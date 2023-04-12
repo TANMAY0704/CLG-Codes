@@ -11,14 +11,20 @@ int main()
     B = fork();
     if (B != 0)
     {
-        print("Child A(C) id:%d\n", getpid());
+        printf("Child A(B) id:%d\n", getpid());
         printf("Parent of  B id:%d\n", getppid());
         C = fork();
         if (C == 0)
         {
-            print("Child A(C) id:%d\n", getpid());
+            printf("Child A(C) id:%d\n", getpid());
             printf("Parent of C id:%d\n", getppid());
         }
     }
     return 0;
+
+    for( int i = 0; i < 3; i++)
+    {
+        wait(NULL);
+    }
+    
 }
