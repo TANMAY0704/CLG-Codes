@@ -50,6 +50,6 @@ public class q4 {
         t.erase();
         Square sq = new Square();
         sq.draw();
-        sq.erase();
+        sq.erase();  
     }    
 }

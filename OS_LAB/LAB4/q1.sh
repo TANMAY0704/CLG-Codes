@@ -1,4 +1,4 @@
-echo Enter three numbers
+echo Enter three numbers :
 read a b c
 echo $a $b $c
 if [ $a -gt $b ]
