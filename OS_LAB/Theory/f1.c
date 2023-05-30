@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
             printf("D is child of B and has pid %d and parent pid %d \n", getpid(), getppid());
             h = fork();
 
-            if (h == 0)
+            if (h == 0)`
             {
                 printf("H is child of D and has pid %d and parent pid %d \n", getpid(), getppid());
                 i = fork();
