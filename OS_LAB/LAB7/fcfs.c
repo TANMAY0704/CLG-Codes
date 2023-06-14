@@ -19,7 +19,7 @@ int main()
         p[i].pno = i + 1;
     }
     for (i = 0; i < n; i++)
-    {
+    { 
         for (j = i + 1; j < n; j++)
         {
             if (p[i].at > p[j].at)
